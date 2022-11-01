@@ -3,21 +3,20 @@
 
 const fs = require('fs')
 
-const crearArchivo = async (base) => {
+const crearArchivo = async (base, limit = 10) => {
     try {
-        console.log('===============');
-        console.log('Tabla del:', base);
-        console.log('===============');
         let salida = '';
+        salida += '===============\n';
+        salida += 'Tabla del:' + base + '\n';
+        salida += '===============\n';
 
-        for (let i = 0; i <= 10; i++) {
+        for (let i = 0; i <= limit; i++) {
             salida += `${base} x ${i} = ${base * i}\n`;
         }
-        console.log(salida);
 
-        fs.writeFileSync(`tabla-${base}.txt`, salida);
+        fs.writeFileSync(`results/tabla-${base}.txt`, salida);
 
-        return `tabla-${base}.txt`
+        return `results/tabla-${base}.txt`
     } catch (error) {
         return error;
     }

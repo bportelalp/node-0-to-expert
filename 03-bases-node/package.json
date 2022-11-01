@@ -4,7 +4,8 @@
   "description": "Simple tabla de multiplicar para archivo de texto",
   "main": "app.js",
   "scripts": {
-    "run": "node app --base=3",
+    "run": "node app --base=5",
+    "run-nodemon": "nodemon app --base=3",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +19,7 @@
   },
   "homepage": "https://github.com/bportelalp/node-0-to-expert#readme",
   "dependencies": {
-    "colors": "^1.4.0"
+    "colors": "^1.4.0",
+    "yargs": "^17.6.0"
   }
 }

@@ -1,13 +1,17 @@
 const { crearArchivo } = require('./helpers/multiplicar')
-
+const argv = require('./config/yars')
 
 console.clear();
 
-// extraer de la consola de comandos, el valor de Base.
-// 
-const [,,arg3] = process.argv
-const [,base = 5] = arg3.split('=')
+// extraer de la consola de comandos, el valor de Base. Esto sin yargs
+// const [,,arg3] = process.argv
+// const [,base = 5] = arg3.split('=')
 
-crearArchivo(base)
-    .then(r => console.log(r))
+// console.log(process.argv);
+// console.log(argv);
+
+const { base, limit, verbose } = argv;
+
+crearArchivo(base, limit)
+    .then(r => { if (verbose) console.log(r) })
     .catch(err => console.log(err));
