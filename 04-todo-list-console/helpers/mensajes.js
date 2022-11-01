@@ -1,4 +1,4 @@
-const colors = require('colors');
+import colors from 'colors';
 
 const mostrarMenu = () => {
 
@@ -46,7 +46,7 @@ const pausa = () => {
 }
 
 
-module.exports = {
+export {
     mostrarMenu,
     pausa
 }
