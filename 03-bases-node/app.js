@@ -12,6 +12,6 @@ console.clear();
 
 const { base, limit, verbose } = argv;
 
-crearArchivo(base, limit)
+crearArchivo(base, limit, verbose)
     .then(r => { if (verbose) console.log(r) })
     .catch(err => console.log(err));
