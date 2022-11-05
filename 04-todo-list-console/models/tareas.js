@@ -64,6 +64,12 @@ class Tareas {
         this._listado = listadoJson;
     }
 
+    deleteTarea(id = '') {
+        if(this._listado[id]){
+            delete this._listado[id];
+        }
+    }
+
 
 }
 
