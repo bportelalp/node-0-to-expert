@@ -30,15 +30,29 @@ class Tareas {
     }
 
     listadoCompleto() {
+        const lista = this.listadoArr;
+        return this._estilizar(lista)
+    }
+
+    listarPendientesCopletadas(completadas = true) {
+        var tasks = this.listadoArr.filter(t => {
+            if (!completadas)
+                return t.completadoEn === null
+            else
+                return t.completadoEn !== null
+        })
+
+        return this._estilizar(tasks);
+    }
+
+    _estilizar(lista) {
         // 1. tarea :: completada / pendiente...
         let result = '';
-        const lista = this.listadoArr;
         lista.forEach((t, i) => {
-            result += (`${`${i + 1}`.green}. ${t.description} ::: ${t.completadoEn === null? 'Pendiente'.red:'Completado'.green}\n`)
+            result += (`${`${i + 1}`.green}. ${t.description} ::: ${t.completadoEn === null ? 'Pendiente'.red : t.completadoEn.green}\n`)
         })
         return result;
     }
-
     cargarTareasFromArray(tareas = []) {
         this._listado = {};
         tareas.forEach(t => {

@@ -30,8 +30,10 @@ const main = async () => {
                 console.log(tareas.listadoCompleto());
                 break;
             case '3':
+                console.log(tareas.listarPendientesCopletadas(true));
                 break;
             case '4':
+                console.log(tareas.listadoCompleto(false));
                 break;
             case '5':
                 break;
