@@ -28,6 +28,18 @@ class Tareas {
         return listado;
     }
 
+    cargarTareasFromArray(tareas = []) {
+        this._listado = {};
+        tareas.forEach(t => {
+            this._listado[t.id] = t;
+        })
+    }
+
+    loadTareas(listadoJson) {
+        this._listado = listadoJson;
+    }
+
+
 }
 
 export {
