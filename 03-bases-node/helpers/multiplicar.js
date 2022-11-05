@@ -14,7 +14,6 @@ const crearArchivo = async (base, limit = 10, verbose = false) => {
         if (verbose)
             console.log(colors.green(salida));
         fs.writeFileSync(`results/tabla-${base}.txt`, salida);
-
         return `Exported on: results/tabla-${base}.txt`
     } catch (error) {
         return error;
