@@ -18,6 +18,16 @@ class Tareas {
     }
 
 
+    get listadoArr() {
+        const listado = [];
+
+        Object.keys(this._listado).forEach(t => {
+            listado.push(this._listado[t].description);
+        });
+
+        return listado;
+    }
+
 }
 
 export {

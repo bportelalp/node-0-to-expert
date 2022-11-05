@@ -10,6 +10,7 @@ const main = async () => {
 
     const tareas = new Tareas();
     do {
+        // Imprimir el menú
         opt = await inquirerMenu();
 
         switch (opt) {
@@ -17,10 +18,9 @@ const main = async () => {
                 // Crear la tarea
                 const newTask = await leerInput('Descripción de tarea:');
                 tareas.crearTarea(newTask);
-                console.log(tareas);
                 break;
             case '2':
-                console.log(tareas._listado);
+                console.log(tareas.listadoArr);
                 break;
             case '3':
                 break;
