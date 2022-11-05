@@ -4,6 +4,7 @@
  */
 
 import { Tarea } from "./tarea.js";
+import colors from 'colors';
 
 class Tareas {
     _listado = {};
@@ -22,10 +23,20 @@ class Tareas {
         const listado = [];
 
         Object.keys(this._listado).forEach(t => {
-            listado.push(this._listado[t].description);
+            listado.push(this._listado[t]);
         });
 
         return listado;
+    }
+
+    listadoCompleto() {
+        // 1. tarea :: completada / pendiente...
+        let result = '';
+        const lista = this.listadoArr;
+        lista.forEach((t, i) => {
+            result += (`${`${i + 1}`.green}. ${t.description} ::: ${t.completadoEn === null? 'Pendiente'.red:'Completado'.green}\n`)
+        })
+        return result;
     }
 
     cargarTareasFromArray(tareas = []) {
