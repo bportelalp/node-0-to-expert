@@ -65,12 +65,24 @@ class Tareas {
     }
 
     deleteTarea(id = '') {
-        if(this._listado[id]){
+        if (this._listado[id]) {
             delete this._listado[id];
         }
     }
 
+    toggleCompletadas(ids = []) {
+        ids.forEach(id => {
+            const tarea = this._listado[id];
+            if (!tarea.completadoEn)
+                tarea.completadoEn = new Date().toISOString();
+        })
 
+        Object.keys(this._listado)
+            .filter(k => !ids.includes(k))
+            .forEach(k => {
+                this._listado[k].completadoEn = null;
+            })
+    }
 }
 
 export {
