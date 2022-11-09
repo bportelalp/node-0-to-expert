@@ -1,34 +1,32 @@
 import inquirer from 'inquirer';
 import colors from 'colors';
 
-const questions = [
-    {
-        type: 'list',
-        name: 'opt',
-        message: '¿Qué desea hacer?',
-        choices: [
-            {
-                value: 1,
-                name: `${'1.'.green} Buscar ciudad`
-            },
-            {
-                value: 2,
-                name: `${'2.'.green} Historial`
-            },
-            {
-                value: 0,
-                name: `${'0.'.green} Salir\n`
-            }
-        ]
-    }
-];
-
-const inquirerMenu = async () => {
+const showMenu = async () => {
     console.clear();
     console.log('=========================='.green);
     console.log('  Seleccione una opción'.white);
     console.log('==========================\n'.green);
-
+    const questions = [
+        {
+            type: 'list',
+            name: 'opt',
+            message: '¿Qué desea hacer?',
+            choices: [
+                {
+                    value: 1,
+                    name: `${'1.'.green} Buscar ciudad`
+                },
+                {
+                    value: 2,
+                    name: `${'2.'.green} Historial`
+                },
+                {
+                    value: 0,
+                    name: `${'0.'.green} Salir\n`
+                }
+            ]
+        }
+    ];
     const { opt } = await inquirer.prompt(questions);
     return opt;
 }
@@ -123,7 +121,7 @@ const pausa = async () => {
 
 
 export {
-    inquirerMenu,
+    showMenu,
     pausa,
     leerInput,
     listadoTareasBorrar,
