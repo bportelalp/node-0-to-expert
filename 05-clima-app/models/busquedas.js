@@ -1,14 +1,16 @@
 import axios from "axios";
 
 class Busquedas {
+    _mapboxKey = '';
     historial = ['Madrid', 'Lugo'];
-    constructor() {
+    constructor(mapboxKey = '') {
         // TODO: Leer de bbdd
+        this._mapboxKey = mapboxKey;
     }
 
     get paramsMapbox() {
         return {
-            'access_token': 'pk.eyJ1IjoiYnBvcnRlbGEiLCJhIjoiY2xhY281dzY3MDlqbTNwcGp4cHRqMDh4eCJ9.ofkSp3OKc96eGMyClqOQ0Q',
+            'access_token': this._mapboxKey,
             'limit': 5,
             'language': 'es'
         }
@@ -16,6 +18,7 @@ class Busquedas {
 
     async searchLocation(location = '') {
         try {
+            console.log('Pidiendo');
             // petición http
             const client = axios.create({
                 baseURL: `https://api.mapbox.com/geocoding/v5/mapbox.places/${location}.json`,
@@ -27,6 +30,7 @@ class Busquedas {
             console.log(resp.data);
             return []; // todas las cidudades que coincidan con el lugar
         } catch (error) {
+            console.log('Error:', error);
             return [];
         }
     }

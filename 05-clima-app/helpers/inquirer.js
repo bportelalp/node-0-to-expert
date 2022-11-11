@@ -2,7 +2,7 @@ import inquirer from 'inquirer';
 import colors from 'colors';
 
 const showMenu = async () => {
-    console.clear();
+    // console.clear();
     console.log('=========================='.green);
     console.log('  Seleccione una opción'.white);
     console.log('==========================\n'.green);
