@@ -14,6 +14,7 @@ const main = async () => {
                 // prompt
                 var location = await ui.leerInput('Introduzca lugar a buscar: ');
                 console.log(location);
+                await busquedas.searchLocation(location);
                 // Buscar lugar
 
                 // Seleccionar lugar

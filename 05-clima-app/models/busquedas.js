@@ -1,3 +1,5 @@
+import axios from "axios";
+
 class Busquedas {
     historial = ['Madrid', 'Lugo'];
     constructor() {
@@ -5,11 +7,15 @@ class Busquedas {
     }
 
     async searchLocation(location = '') {
+        try {
+            // TODO: petición http
+            const resp = await axios.get('https://reqres.in/api/users?page=2');
+            console.log(resp.data);
+            return []; // todas las cidudades que coincidan con el lugar
+        } catch (error) {
+            return [];
+        }
 
-        // TODO: petición http
-        console.log(lugar);
-
-        return []; // todas las cidudades que coincidan con el lugar
     }
 }
 
