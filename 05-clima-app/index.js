@@ -12,18 +12,22 @@ const main = async () => {
         switch (opt) {
             case 1:
                 // prompt
-                var location = await ui.leerInput('Introduzca lugar a buscar: ');
-                console.log(location);
-                await busquedas.searchLocation(location);
+                const searchtext = await ui.leerInput('Introduzca lugar a buscar: ');
+                const locations = await busquedas.searchLocation(searchtext);
                 // Buscar lugar
 
                 // Seleccionar lugar
+                const selected = await ui.listLocation(locations)
+                if(selected === 0)
+                    break;
 
+                const place = locations.find(l => l.id === selected);
+                
                 // Mostrar resultado
                 console.log('Información de la ciudad\n'.green);
-                console.log('Ciudad: ', );
-                console.log('Lat: ', );
-                console.log('Lon: ', );
+                console.log('Ciudad: ', place.nombre);
+                console.log('Lat: ', place.lat);
+                console.log('Lon: ', place.lng);
                 console.log('Temperatura: ', );
                 console.log('Minima: ', );
                 console.log('Maxima: ', );

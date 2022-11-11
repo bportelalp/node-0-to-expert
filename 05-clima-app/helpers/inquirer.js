@@ -50,12 +50,12 @@ const leerInput = async (message) => {
     return desc;
 }
 
-const listadoTareasBorrar = async (tareas = []) => {
+const listLocation = async (locations = []) => {
 
-    const choices = tareas.map((t, i) => {
+    const choices = locations.map((t, i) => {
         return {
             value: t.id,
-            name: `${`${i + 1}`.green} ${t.description}`
+            name: `${`${i + 1}`.green} ${t.nombre}`
         };
     });
     choices.unshift({
@@ -66,7 +66,7 @@ const listadoTareasBorrar = async (tareas = []) => {
         {
             type: 'list',
             name: 'opt',
-            message: 'Seleccionar tarea para borrar',
+            message: 'Seleccionar localización',
             choices: choices
         }
     ];
@@ -124,7 +124,7 @@ export {
     showMenu,
     pausa,
     leerInput,
-    listadoTareasBorrar,
+    listLocation,
     listadoTareasFinalizar,
     confirmar
 }
