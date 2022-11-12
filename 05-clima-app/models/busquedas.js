@@ -1,8 +1,9 @@
 import axios from "axios";
+import fs from "fs";
 
 class Busquedas {
     _mapboxKey = '';
-    historial = [];
+    _historial = [];
     constructor(mapboxKey = '', weatherKey = '') {
         // TODO: Leer de bbdd
         this._mapboxKey = mapboxKey;
@@ -17,11 +18,11 @@ class Busquedas {
         }
     }
 
-    createParamsWeather(lat, lon){
+    createParamsWeather(lat, lon) {
         return {
             'appid': this._weatherKey,
             'lat': lat,
-            'lon':lon,
+            'lon': lon,
             'units': 'metric',
             'lang': 'es'
         }
@@ -29,7 +30,7 @@ class Busquedas {
 
     async searchLocation(location = '') {
         try {
-            
+
             console.log('Pidiendo');
             // petición http
             const client = axios.create({
@@ -52,14 +53,10 @@ class Busquedas {
         }
     }
 
-    setLastResul(location = {}){
-        this.historial.unshift(location);
-        this.historial = this.historial.slice(0,5);
-    }
 
-    async searchWeather(lat, lon){
+    async searchWeather(lat, lon) {
         try {
-            
+
             console.log('Pidiendo');
             // petición http
             const client = axios.create({
@@ -76,22 +73,37 @@ class Busquedas {
                 tempMin: resp.data.main.temp_min,
                 tempMax: resp.data.main.temp_max,
             }
-            return result; 
+            return result;
         } catch (error) {
             console.log('Error:', error);
             return [];
         }
     }
 
-    _farenheitToCelsius(farenheit = 0){
-        const result = (farenheit - 32)*5 / 9;
+    agregarHistorial(lugar = '') {
+
+        this._historial.unshift(lugar);
+        this._historial = this._historial.slice(0, 5);
+
+        fs.writeFileSync('./db/db.json', JSON.stringify(this._historial));
+    }
+
+    get historial() {
+        const json = fs.readFileSync('./db/db.json');
+        if (json)
+            this._historial = JSON.parse(json);
+        return this._historial;
+    }
+
+    _farenheitToCelsius(farenheit = 0) {
+        const result = (farenheit - 32) * 5 / 9;
         return result;
     }
 
-    _kelvinToCelsius(kelvin = 0){
+    _kelvinToCelsius(kelvin = 0) {
         return kelvin - 273;
     }
-    
+
 }
 
 
