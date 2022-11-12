@@ -6,7 +6,7 @@ dotenv.config();
 
 const main = async () => {
     let opt = 0;
-    const busquedas = new Busquedas(process.env.MAPBOX_KEY);
+    const busquedas = new Busquedas(process.env.MAPBOX_KEY, process.env.WEATHER_KEY);
     do {
         opt = await ui.showMenu();
         switch (opt) {
@@ -18,21 +18,24 @@ const main = async () => {
 
                 // Seleccionar lugar
                 const selected = await ui.listLocation(locations)
-                if(selected === 0)
+                if (selected === 0)
                     break;
 
                 const place = locations.find(l => l.id === selected);
-                
+                await busquedas.setLastResul(place);
+                const weather =  await busquedas.searchWeather(place.lat, place.lng);
                 // Mostrar resultado
                 console.log('Información de la ciudad\n'.green);
                 console.log('Ciudad: ', place.nombre);
                 console.log('Lat: ', place.lat);
                 console.log('Lon: ', place.lng);
-                console.log('Temperatura: ', );
-                console.log('Minima: ', );
-                console.log('Maxima: ', );
+                console.log('Estado: ', weather.estado);
+                console.log('Temperatura: ', weather.temp);
+                console.log('Minima: ', weather.tempMin);
+                console.log('Maxima: ',weather.tempMax);
                 break;
             case 2:
+                const selected2 = await ui.listLocation(busquedas.historial);
                 break;
             default:
                 break;
