@@ -1,14 +1,14 @@
-import http from "node:http";
-
-
-http.createServer((req, resp) => {
-    console.log(req);
-
-    resp.writeHead(200, {'Content-Type': 'text/plain'})
-    resp.write(' Page not found');
-    resp.end();
+import express from "express";
+const app = express();
+const port = 8080;
+app.get('/', (req, resp) => {
+    resp.send('Hello');
 })
-.listen(8080);
 
+app.get('*', (req, resp) => {
+    resp.send('404 | Page not found');
+})
 
-console.log('Escuchando el puerto ',8080);
+app.listen(port, () => {
+    console.log(`\n------Application listen to http://localhost:${port}-------`);
+});
