@@ -8,6 +8,18 @@ const __dirname = path.resolve();
 app.use(express.static('public'));
 
 
+app.get('/index', (req, resp)=>{
+    resp.sendFile(__dirname + '/public/index.html')
+})
+
+app.get('/generic', (req, resp)=>{
+    resp.sendFile(__dirname + '/public/generic.html')
+})
+
+app.get('/elements', (req, resp)=>{
+    resp.sendFile(__dirname + '/public/elements.html')
+})
+
 
 // esto no se ejecuta porque ya sirvio el static en la ruta inicial
 app.get('/', (req, resp) => {
